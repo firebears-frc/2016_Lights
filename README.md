@@ -1,4 +1,4 @@
-# lights_2015
+# lights_2016
 
 This program watches Network Tables for changes to the "lights" table.
 For each PixelStrip we define on the robot, there will be a corresponding
