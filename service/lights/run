@@ -3,7 +3,7 @@
 # Execute a java program as a Daemon
 
 PROG_HOME=/home/pi
-PROG_NAME=lights_2015
+PROG_NAME=2016_Lights
 PROG_CLASS=org.firebears.lights.LightsMain
 PROG_OPTS="-Dverbose=true -Dfadecandy.server=127.0.0.1 -Dnetwork_table.server=NONE"
 CP="${PROG_HOME}/${PROG_NAME}.jar:${PROG_HOME}/NetworkTables.jar"

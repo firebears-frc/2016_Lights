@@ -1,4 +1,4 @@
-<project name="lights_2015" default="dist" basedir=".">
+<project name="2016_Lights" default="dist" basedir=".">
 
 	<property name="src.dir" location="${basedir}/src" description="Directory of all Java source files" />
 	<property name="test.dir" location="${basedir}/test" description="Directory for all unit test code" />
