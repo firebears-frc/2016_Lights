@@ -1,6 +1,5 @@
 package org.firebears.lights;
 
-import opc.Animation;
 import opc.OpcClient;
 import opc.OpcDevice;
 import opc.PixelStrip;
@@ -14,7 +13,6 @@ import examples.MovingPixel;
 import examples.Pulsing;
 import examples.Spark;
 import examples.TheaterLights;
-//import examples.bulb;
 import examples.crazy;
 
 /**
@@ -64,7 +62,7 @@ public class LightsMain {
 
 	/** Host name or IP address of the Network Table server. */
 	public static final String NT_SERVER_HOST
-		= System.getProperty("network_table.server", "roborio-2846-frc.local");
+		= System.getProperty("networkTable.server", "roborio-2846-frc.local");
 
 	/** Host name or IP address of the Fadecandy server. */
 	public static final String FC_SERVER_HOST
@@ -78,7 +76,7 @@ public class LightsMain {
 	public static final boolean VERBOSE
 		= "true".equals(System.getProperty("verbose", "false"));
 
-	private static TableWatcher init_pix_strip(
+	private static TableWatcher initializePixelStrip(
 		OpcDevice fadeCandy, NetworkTable table,
 		int pin, int len, String name)
 	{
@@ -95,8 +93,6 @@ public class LightsMain {
 		watcher.addAnimation(ANIM_SPARK, new Spark());
 		watcher.addAnimation(ANIM_THEATER, new TheaterLights(0xFFAA00));
 		watcher.addAnimation(ANIM_EXPLODE, new Exploding());
-
-//		watcher.addAnimation(BULB, new bulb());
 
 		table.addTableListener(watcher, true);
 		return watcher;
@@ -118,19 +114,12 @@ public class LightsMain {
 
 		// Initialize pixel strips
 
-		TableWatcher s1 = init_pix_strip(fadeCandy, table, 0, 64, STRIP_LIFTU);
-		TableWatcher s2 = init_pix_strip(fadeCandy, table, 1, 64, STRIP_LIFTD);
-		TableWatcher s3 = init_pix_strip(fadeCandy, table, 2, 64, STRIP_SUPPU);
-		TableWatcher s4 = init_pix_strip(fadeCandy, table, 3, 64, STRIP_SUPPD);
-		TableWatcher s5 = init_pix_strip(fadeCandy, table, 4, 64, STRIP_TROPH);
-		TableWatcher s6 = init_pix_strip(fadeCandy, table, 5, 64, STRIP_INRBT);
-
-//		init_pix_strip(fadeCandy, table, 0, 16, STRIP_LIFT1);
-//		init_pix_strip(fadeCandy, table, 0, 16, STRIP_LIFT2);
-//		init_pix_strip(fadeCandy, table, 0, 16, STRIP_BOX);
-//		init_pix_strip(fadeCandy, table, 0, 16, STRIP_UNDERGLOW);
-//		init_pix_strip(fadeCandy, table, 1, 8, "nothing");
-//		init_pix_strip(fadeCandy, table, 2, 16, STRIP_CELEBRATE);
+		TableWatcher s1 = initializePixelStrip(fadeCandy, table, 0, 64, STRIP_LIFTU);
+		TableWatcher s2 = initializePixelStrip(fadeCandy, table, 1, 64, STRIP_LIFTD);
+		TableWatcher s3 = initializePixelStrip(fadeCandy, table, 2, 64, STRIP_SUPPU);
+		TableWatcher s4 = initializePixelStrip(fadeCandy, table, 3, 64, STRIP_SUPPD);
+		TableWatcher s5 = initializePixelStrip(fadeCandy, table, 4, 64, STRIP_TROPH);
+		TableWatcher s6 = initializePixelStrip(fadeCandy, table, 5, 64, STRIP_INRBT);
 
 		s1.setAnimation(ANIM_FIRE);
 		s2.setAnimation(ANIM_FIRE);
@@ -141,42 +130,13 @@ public class LightsMain {
 
 		// Wait forever while Client Connection Reader thread runs
 		System.out.println(server.getConfig());
-		int timeswitch = 0;
-		int whichanim = 0;
 
 		while (true) {
 			server.animate();
 			try {
 				Thread.sleep(10);
-				timeswitch++;
-				if(timeswitch >= 1000)
-					timeswitch-=1000;
 			} catch (InterruptedException e ) {
  				if (VERBOSE) { System.err.println(e.getMessage()); }
-			}
-			if((timeswitch%1000) == 0) {
-				String an;
-				if(whichanim == 0) {
-					an = ANIM_FIRE;
-				}else if(whichanim == 1) {
-					an = ANIM_CRAZY;
-				}else if(whichanim == 2) {
-					an = ANIM_PULSE;
-				}else if(whichanim == 3) {
-					an = ANIM_SPARK;
-				}else if(whichanim == 4) {
-					an = ANIM_THEATER;
-				}else{
-					an = ANIM_FIRE;
-					whichanim = 0;
-				}
-				whichanim++;
-				s1.setAnimation(an);
-				s2.setAnimation(an);
-				s3.setAnimation(an);
-				s4.setAnimation(an);
-				s5.setAnimation(ANIM_PULSE);
-				s6.setAnimation(ANIM_CATERPILLAR);
 			}
 		}
 	}
