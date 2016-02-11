@@ -11,13 +11,13 @@ import opc.PixelStrip;
  * Example animation that pulses all pixels through an array of colors.
  */
 public class Pulsing extends Animation {
-	
+
 
 	/** Milliseconds for each pulse cycle. */
 	long timeCycle = 2000;
 	public int color[] = new int[2];
 	int colorLen = color.length;
-	
+
 	public Pulsing() { this.setColor(-1); }
 	public Pulsing(int colors)  { this.setColor(colors); }
 
@@ -42,7 +42,7 @@ public class Pulsing extends Animation {
 			case LightsMain.CS_RED_WHITE:
 				color[0] = 0xFF0000;
 				color[1] = 0xFFFFFF;
-				break;	
+				break;
 			case LightsMain.CS_WHITE:
 				color[0] = 0xFFFFFF;
 				color[1] = 0xBBBBBB;
@@ -70,8 +70,8 @@ public class Pulsing extends Animation {
 		}
 		colorLen = color.length;
 	}
-	
-	
+
+
 	@Override
 	public void reset(PixelStrip strip) {
 		g_fade = 255;
@@ -93,15 +93,15 @@ public class Pulsing extends Animation {
 		}
 		return true;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Return a brightness value as a function of time. The input value is the
-	 * number of milliseconds into the cycle, from zero to timeCycle. 
+	 * number of milliseconds into the cycle, from zero to timeCycle.
 	 * Cycle over a sine function, so it's nice and smooth.
-	 * 
+	 *
 	 * @param timeNow time within the cycle.
 	 * @return brightness value from 0 to 255
 	 */
@@ -113,24 +113,27 @@ public class Pulsing extends Animation {
 
 	protected final int FAST = 1000; // One cycle every second
 	protected final int SLOW = 3000; // One cycle every three seconds
-	
+
 	/**
 	 * @param n value between -1.0 and 1.0;
 	 */
-	public void setValue(double n) { 
+	public void setValue(double n) {
 		n = Math.abs(n);
 		timeCycle = Math.round(SLOW - (SLOW - FAST) * n);
 		timeCycle = Math.min(Math.max(FAST, timeCycle), SLOW);
 	}
-	
-	
+
+
 	public static void main(String[] args) throws Exception {
 		String FC_SERVER_HOST = System.getProperty("fadecandy.server", "raspberrypi.local");
 		int FC_SERVER_PORT = Integer.parseInt(System.getProperty("fadecandy.port", "7890"));
-		
+		int STRIP1_COUNT = Integer.parseInt(System.getProperty("fadecandy.strip1.count", "72"));
+		int PIXELSTRIP_PIN = Integer.parseInt(System.getProperty("pixelStrip", "-1"));
+
 		OpcClient server = new OpcClient(FC_SERVER_HOST, FC_SERVER_PORT);
+		if (PIXELSTRIP_PIN>=0) { server.setSingleStripNum(PIXELSTRIP_PIN); }
 		OpcDevice fadeCandy = server.addDevice();
-		PixelStrip strip1 = fadeCandy.addPixelStrip(0, 72);
+		PixelStrip strip1 = fadeCandy.addPixelStrip(0, STRIP1_COUNT);
 		System.out.println(server.getConfig());
 
 		Animation a = new Pulsing();

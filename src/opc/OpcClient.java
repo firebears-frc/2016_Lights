@@ -27,6 +27,7 @@ public class OpcClient implements AutoCloseable {
 	protected boolean initialized = false;
 	protected byte[] packetData;
 	private boolean verbose = true;
+	protected byte command = 0;
 
 	protected boolean interpolation = false;
 
@@ -158,7 +159,7 @@ public class OpcClient implements AutoCloseable {
 			int packetLen = 4 + numBytes;
 			packetData = new byte[packetLen];
 			packetData[0] = (byte) this.channel;
-			packetData[1] = 0; // Command (Set pixel colors)
+			packetData[1] = command; // Command (Set pixel colors)
 			packetData[2] = (byte) (numBytes >> 8);
 			packetData[3] = (byte) (numBytes & 0xFF);
 		}
@@ -277,6 +278,10 @@ public class OpcClient implements AutoCloseable {
 	 */
 	public void setVerbose(boolean b) {
 		this.verbose = b;
+	}
+
+	public void setSingleStripNum(int c) {
+		this.command = (byte)(c & 0xFF);
 	}
 
 	/**
