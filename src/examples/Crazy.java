@@ -5,7 +5,7 @@ import opc.OpcClient;
 import opc.OpcDevice;
 import opc.PixelStrip;
 
-public class crazy extends Animation{
+public class Crazy extends Animation{
 	public static final String FC_SERVER_HOST 
 	= System.getProperty("fadecandy.server", "raspberrypi.local");
 	
@@ -121,7 +121,7 @@ public class crazy extends Animation{
 		//PixelStrip strip2 = fadeCandy.addPixelStrip(1, 8);
 		//PixelStrip strip3 = fadeCandy.addPixelStrip(2, 16);
 		
-		Animation a = new crazy();
+		Animation a = new Crazy();
 		strip1.setAnimation(a);
 		System.out.println(server.getConfig());
 		

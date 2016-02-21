@@ -5,11 +5,11 @@ import opc.OpcClient;
 import opc.OpcDevice;
 import opc.PixelStrip;
 
-public class qtest extends Animation{
-	public static final String FC_SERVER_HOST 
+public class QTest extends Animation{
+	public static final String FC_SERVER_HOST
 	= System.getProperty("fadecandy.server", "raspberrypi.local");
-	
-	public static final int FC_SERVER_PORT 
+
+	public static final int FC_SERVER_PORT
 	= Integer.parseInt(System.getProperty("fadecandy.port", "7890"));
 	long timeCycle = 200000;
 
@@ -31,10 +31,10 @@ public class qtest extends Animation{
 	public void setValue(double n){
 		row = (int)n;
 	}
-	
+
 	public void reset(PixelStrip strip) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public boolean draw(PixelStrip strip) {
@@ -54,19 +54,19 @@ public class qtest extends Animation{
 			  double s = (Math.sin(theta) + 1.0) / 2.0;     // Value from 0.0 to 1.0
 			  return (int)Math.round(s * 128);
 			}
-	
+
 	public static void main(String[] args) throws Exception {
 		OpcClient server = new OpcClient(FC_SERVER_HOST, FC_SERVER_PORT);
 		OpcDevice fadeCandy = server.addDevice();
-		
+
 		PixelStrip strip1 = fadeCandy.addPixelStrip(0, 64);
 		PixelStrip strip2 = fadeCandy.addPixelStrip(1, 8);
 		PixelStrip strip3 = fadeCandy.addPixelStrip(2, 16);
-		
-		Animation a = new qtest();
+
+		Animation a = new QTest();
 		strip1.setAnimation(a);
 		System.out.println(server.getConfig());
-		
+
 		for (int i = 0; i < 1000; i++) {
 			server.animate();
 			Thread.sleep(100);

@@ -10,7 +10,7 @@ import opc.PixelStrip;
 import examples.Fire;
 import examples.Pulsing;
 import examples.Spark;
-import examples.crazy;
+import examples.Crazy;
 
 /**
  * This program runs the lights continuously.
@@ -59,7 +59,7 @@ public class LightsConstant {
 			AnimationSequence s = new AnimationSequence(fadeCandy.addPixelStrip(1, 8));
 			stripList.add(s);
 			s.addAnimation(new Fire());
-			s.addAnimation(new crazy());
+			s.addAnimation(new Crazy());
 			s.addAnimation(new Pulsing(LightsMain.CS_RED));
 			s.addAnimation(new Pulsing(6));
 		}

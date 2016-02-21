@@ -5,7 +5,7 @@ import opc.OpcClient;
 import opc.OpcDevice;
 import opc.PixelStrip;
 
-public class testcolor extends Animation{
+public class TestColor extends Animation{
 	public static final String FC_SERVER_HOST 
 	= System.getProperty("fadecandy.server", "raspberrypi.local");
 	
@@ -44,7 +44,7 @@ public static void main(String[] args) throws Exception {
 		PixelStrip strip2 = fadeCandy.addPixelStrip(1, 8);
 		PixelStrip strip3 = fadeCandy.addPixelStrip(2, 16);
 		
-		Animation a = new testcolor();
+		Animation a = new TestColor();
 		strip1.setAnimation(a);
 		System.out.println(server.getConfig());
 		
