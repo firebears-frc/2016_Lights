@@ -111,11 +111,11 @@ public class LightsMain {
 
 		TableWatcher stripChassisLeft = initializePixelStripAnimations(fadeCandy, table, 0, 64, STRIP_CHASSIS_LEFT);
 		TableWatcher stripChassisRight = initializePixelStripAnimations(fadeCandy, table, 1, 64, STRIP_CHASSIS_RIGHT);
-		TableWatcher stripCelebrate = initializePixelStripAnimations(fadeCandy, table, 2, 64, STRIP_CELEBRATE);
+		TableWatcher stripCelebrate = initializePixelStripAnimations(fadeCandy, table, 2, 16, STRIP_CELEBRATE);
 
-		stripChassisLeft.setAnimation(ANIM_FIRE);
-		stripChassisRight.setAnimation(ANIM_FIRE);
-		stripCelebrate.setAnimation(ANIM_FIRE);
+//		stripChassisLeft.setAnimation(ANIM_FIRE);
+//		stripChassisRight.setAnimation(ANIM_FIRE);
+//		stripCelebrate.setAnimation(ANIM_FIRE);
 
 		// Wait forever while Client Connection Reader thread runs
 		System.out.println(server.getConfig());
