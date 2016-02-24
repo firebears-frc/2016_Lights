@@ -23,19 +23,19 @@ import java.util.*;
  */
 public class TableWatcher implements ITableListener {
 
-	public static final boolean VERBOSE 
+	public static final boolean VERBOSE
 		= "true".equals(System.getProperty("verbose", "false"));
-	
+
 	private final String prefix;
 	private final PixelStrip strip;
 	private final Map<String,Animation> animationMap;
 	private final boolean clear = true;
-	
+
 	double animate_value;
 	String animate_bg;
 	double animate_dim;
 	double animate_col;
-	
+
 
 	public TableWatcher(String prefix, PixelStrip strip) {
 		this.prefix = prefix;
@@ -49,7 +49,7 @@ public class TableWatcher implements ITableListener {
 	 */
 	@Override
 	public void valueChanged(ITable source, String key, Object value, boolean isNew) {
-		if (! key.startsWith(prefix)) { return; } 
+		if (! key.startsWith(prefix)) { return; }
 		String suffix = key.substring(prefix.length());
 		if (contains(suffix, NetworkTable.PATH_SEPARATOR)) { return; }
 		if(strip.getAnimation() == null) {
@@ -84,12 +84,12 @@ public class TableWatcher implements ITableListener {
 			updateAnimation();
 		}
 	}
-	
+
 	private void updateAnimation() {
 		setValue(animate_value);
 		setBg(animate_bg);
 		setBg_value(animate_dim);
-		setColor(animate_col);	
+//		setColor(animate_col);
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class TableWatcher implements ITableListener {
 		}
 		if (strip.getAnimation()!=null) { strip.getAnimation().setValue((Double) value); }
 	}
-	
+
 	private void setColor(double value) {
 		if (VERBOSE) {
 			System.out.println("change color value on " + strip + " and "
@@ -116,7 +116,7 @@ public class TableWatcher implements ITableListener {
 		}
 		if (strip.getAnimation()!=null) {  strip.getAnimation().setColor( (int) value); }
 	}
-	
+
 	private void setBg_value(double value) {
 		if (VERBOSE) {
 			System.out.println("change BG Dim value on " + strip + " and "
@@ -129,7 +129,7 @@ public class TableWatcher implements ITableListener {
 		if (animationName==null || animationName.trim().length()==0) {
 			if (strip.getAnimation()!=null) { strip.getAnimation().setBg(null); }
 			if (VERBOSE) {
-				System.out.println("changeAnimation on " + strip 
+				System.out.println("changeAnimation on " + strip
 						+ " to nothing ");
 			}
 			return;
@@ -140,7 +140,7 @@ public class TableWatcher implements ITableListener {
 			System.err.println("Error: unknown animation " + animationName + " for " + strip);
 			return;
 		}
-		
+
 		if (VERBOSE) {
 			System.out.println("changeAnimation on " + strip + " to "
 					+ animationName + " : " + newAnimation);
@@ -149,7 +149,7 @@ public class TableWatcher implements ITableListener {
 
 		if (strip.getAnimation()!=null) { strip.getAnimation().setBg(newAnimation); }
 	}
-	
+
 	/**
 	 * Change the animation currently running on this strip.
 	 * If the animationName is blank, turn off animation on this strip.
@@ -159,7 +159,7 @@ public class TableWatcher implements ITableListener {
 			strip.setAnimation(null);
 			strip.clear();
 			if (VERBOSE) {
-				System.out.println("changeAnimation on " + strip 
+				System.out.println("changeAnimation on " + strip
 						+ " to nothing ");
 			}
 			return;
@@ -178,7 +178,7 @@ public class TableWatcher implements ITableListener {
 			}
 			if (clear) { strip.clear();  }
 			strip.setAnimation(newAnimation);
-			
+
 		}
 	}
 
@@ -191,7 +191,7 @@ public class TableWatcher implements ITableListener {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Add a named animation to this watcher.
 	 */

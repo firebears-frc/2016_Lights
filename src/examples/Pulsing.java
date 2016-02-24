@@ -127,7 +127,7 @@ public class Pulsing extends Animation {
 	public static void main(String[] args) throws Exception {
 		String FC_SERVER_HOST = System.getProperty("fadecandy.server", "raspberrypi.local");
 		int FC_SERVER_PORT = Integer.parseInt(System.getProperty("fadecandy.port", "7890"));
-		int STRIP1_COUNT = Integer.parseInt(System.getProperty("fadecandy.strip1.count", "72"));
+		int STRIP1_COUNT = Integer.parseInt(System.getProperty("fadecandy.strip1.count", "512"));
 		int PIXELSTRIP_PIN = Integer.parseInt(System.getProperty("pixelStrip", "-1"));
 
 		OpcClient server = new OpcClient(FC_SERVER_HOST, FC_SERVER_PORT);

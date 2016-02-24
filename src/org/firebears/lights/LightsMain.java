@@ -35,6 +35,8 @@ public class LightsMain {
 
 	// Constants for  animations
 	public static final String ANIM_PULSING_GREEN = "ANIM_PULSING_GREEN";
+	public static final String ANIM_PULSING_RED = "ANIM_PULSING_RED";
+	public static final String ANIM_PULSING_BLUE = "ANIM_PULSING_BLUE";
 	public static final String ANIM_MOVING_BLUE = "ANIM_MOVING_BLUE";
 	public static final String ANIM_FIRE = "ANIM_FIRE";
 	public static final String ANIM_CRAZY = "ANIM_CRAZY";
@@ -80,6 +82,8 @@ public class LightsMain {
 		TableWatcher watcher = new TableWatcher(name, strip);
 
 		watcher.addAnimation(ANIM_PULSING_GREEN, new Pulsing());
+		watcher.addAnimation(ANIM_PULSING_RED, new Pulsing(CS_RED_YELLOW));
+		watcher.addAnimation(ANIM_PULSING_BLUE, new Pulsing(CS_BLUE));
 		watcher.addAnimation(ANIM_MOVING_BLUE, new MovingPixel(0x0000FF));
 		watcher.addAnimation(ANIM_FIRE, new Fire());
 		watcher.addAnimation(ANIM_CRAZY, new Crazy());
@@ -111,7 +115,7 @@ public class LightsMain {
 
 		TableWatcher stripChassisLeft = initializePixelStripAnimations(fadeCandy, table, 0, 64, STRIP_CHASSIS_LEFT);
 		TableWatcher stripChassisRight = initializePixelStripAnimations(fadeCandy, table, 1, 64, STRIP_CHASSIS_RIGHT);
-		TableWatcher stripCelebrate = initializePixelStripAnimations(fadeCandy, table, 2, 16, STRIP_CELEBRATE);
+		TableWatcher stripCelebrate = initializePixelStripAnimations(fadeCandy, table, 2, 56, STRIP_CELEBRATE);
 
 //		stripChassisLeft.setAnimation(ANIM_FIRE);
 //		stripChassisRight.setAnimation(ANIM_FIRE);

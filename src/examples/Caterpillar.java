@@ -8,20 +8,20 @@ import opc.PixelStrip;
 import org.firebears.lights.LightsMain;
 
 public class Caterpillar extends Animation{
-	
+
 	public final int DIR_NO = 0;
 	public final int DIR_FORWARD = 1;
 	public final int DIR_BACKWARD = 2;
-	
-	double speed = 0.;
+
+	double speed = 1.0;
 	int colors;
 	int colorsa[] = new int[2];
 	int progr = 1;
-	
+
 	int change = 0;
-	
+
 	long prevtime = 0;
-	
+
 	public void setColor(int color) {
 		colors = color;
 		switch (colors) {
@@ -36,7 +36,7 @@ public class Caterpillar extends Animation{
 			case LightsMain.CS_RED_WHITE:
 				colorsa[0] = 0xFF0000;
 				colorsa[1] = 0xFFFFFF;
-				break;	
+				break;
 			case LightsMain.CS_RED_YELLOW:
 				colorsa[0] = 0xFF0000;
 				colorsa[1] = 0xFFAA00;
@@ -100,26 +100,26 @@ public class Caterpillar extends Animation{
 			return false;
 		}
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		String FC_SERVER_HOST = System.getProperty("fadecandy.server", "raspberrypi.local");
 		int FC_SERVER_PORT = Integer.parseInt(System.getProperty("fadecandy.port", "7890"));
-		
+
 		OpcClient server = new OpcClient(FC_SERVER_HOST, FC_SERVER_PORT);
 		OpcDevice fadeCandy = server.addDevice();
-		PixelStrip strip1 = fadeCandy.addPixelStrip(0, 64);
+		PixelStrip strip1 = fadeCandy.addPixelStrip(0, 512);
 //		PixelStrip strip1 = fadeCandy.addPixelStrip(2, 16);
 		System.out.println(server.getConfig());
-		
+
 		Animation a = new Caterpillar();
-		a.setValue(0.5);
+		a.setValue(1.0);
 		strip1.setAnimation(a);
-		
+
 		for (int i=0; i<10000; i++) {
 			server.animate();
 			Thread.sleep(5);
 		}
-		
+
 		server.close();
 	}
 
