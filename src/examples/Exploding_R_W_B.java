@@ -22,11 +22,11 @@ public class Exploding_R_W_B extends Animation {
 	public int color[] = { 
 			0xFF0000, //RED 
 			0x0000FF, //BLUE 
-			0xFF0000, //RED
+			0x0000FF, //RED
 			0x888888, //WHITE 
 			0xFF0000, //RED
 			0x0000FF, //BLUE
-			0XFF0000  //RED
+			0X0000FF  //RED
 			
 			
 	};
