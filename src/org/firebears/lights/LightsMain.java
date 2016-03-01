@@ -37,6 +37,7 @@ public class LightsMain {
 	public static final String ANIM_PULSING_GREEN = "ANIM_PULSING_GREEN";
 	public static final String ANIM_PULSING_RED = "ANIM_PULSING_RED";
 	public static final String ANIM_PULSING_BLUE = "ANIM_PULSING_BLUE";
+	public static final String ANIM_PULSING_R_W_B = "ANIM_PULSING_R_W_B";
 	public static final String ANIM_MOVING_BLUE = "ANIM_MOVING_BLUE";
 	public static final String ANIM_FIRE = "ANIM_FIRE";
 	public static final String ANIM_CRAZY = "ANIM_CRAZY";
@@ -85,6 +86,7 @@ public class LightsMain {
 		watcher.addAnimation(ANIM_PULSING_RED, new Pulsing(CS_RED_YELLOW));
 		watcher.addAnimation(ANIM_PULSING_BLUE, new Pulsing(CS_BLUE));
 		watcher.addAnimation(ANIM_MOVING_BLUE, new MovingPixel(0x0000FF));
+		watcher.addAnimation(ANIM_PULSING_R_W_B, new Pulsing(CS_R_W_B));
 		watcher.addAnimation(ANIM_FIRE, new Fire());
 		watcher.addAnimation(ANIM_CRAZY, new Crazy());
 		watcher.addAnimation(ANIM_BINARY, new Binary());
