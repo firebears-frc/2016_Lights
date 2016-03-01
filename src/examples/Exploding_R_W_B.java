@@ -20,12 +20,13 @@ public class Exploding_R_W_B extends Animation {
 
 	/** List of colors to display.  */
 	public int color[] = { 
-			0x000000,  // black
-			0xFF0000,  // red
-			0x000000,  // black
-			0xFFFFFF,  // white
-			0x000000,  // black
-			0x888888   // blue
+			0xFF0000, //RED 
+			0x0000FF, //BLUE 
+			0xFF0000, //RED
+			0x888888, //WHITE 
+			0xFF0000, //RED
+			0x0000FF, //BLUE
+			0XFF0000  //RED
 			
 			
 	};
@@ -68,7 +69,7 @@ public class Exploding_R_W_B extends Animation {
 			strip.setPixelColor(i, color[j]);
 		}
 		for (int i=middle-1; i<middle+1; i++)  {
-			strip.setPixelColor(i, 0xFFFFFF);
+			strip.setPixelColor(i, 0x00F0E7);
 		}
 		
 		changeTime = millis() + timePerCycle;
