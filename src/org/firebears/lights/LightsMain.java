@@ -129,7 +129,11 @@ public class LightsMain {
 		System.out.println(server.getConfig());
 
 		while (true) {
-			server.animate();
+			try {
+				server.animate();
+			} catch (Error e) {
+				System.out.println("Lights cannot animate");
+			}
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e ) {
